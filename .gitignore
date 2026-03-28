@@ -1,0 +1,27 @@
+# Data lake — don't commit Parquet data files
+data_lake/bronze/*
+data_lake/silver/*
+data_lake/gold/*
+
+# Keep folders visible on GitHub
+!data_lake/bronze/.gitkeep
+!data_lake/silver/.gitkeep
+!data_lake/gold/.gitkeep
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
+# DuckDB database file
+*.duckdb
+
+# Spark checkpoints
+tmp/
+
+# Dashboard CSV exports
+dashboard/data/
+
+# Virtual environments
+venv/
+env/
