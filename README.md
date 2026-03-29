@@ -11,6 +11,8 @@
 ![Status](https://img.shields.io/badge/Status-Complete-22c55e?style=flat)
 ![License](https://img.shields.io/badge/License-MIT-yellow?style=flat)
 
+> 🎬 **Demo Video:** [Watch here](https://youtu.be/WfVg-zzc0X0)
+
 ---
 
 ## 📌 Overview
@@ -67,7 +69,7 @@ global-retail-data-platform/
 ├── dashboard/
 │   └── app.py                # Streamlit live dashboard
 │
-└── assets/                   # Screenshots and architecture diagram
+└── assets/                   # Screenshots and architecture diagrams
 ```
 
 ---
@@ -141,6 +143,12 @@ Transaction 33 (SGD 0.81) and transaction 40 (SGD −237.33) were intentionally 
 
 ![Kafka Running](./assets/kafka_running.png)
 
+### Kafka Internal Architecture
+
+![Kafka Architecture](./assets/kafka_architecture.png)
+
+The diagram above shows how retail transaction events flow into the Redpanda cluster — ingested through topic creation, distributed across partitions via a partitioning algorithm using `store_id` as the key, replicated across nodes using Raft consensus for high availability, and consumed by multiple independent consumer groups.
+
 ### Why Redpanda instead of Apache Kafka?
 
 Traditional Kafka requires Zookeeper, complex configuration, and multiple dependent services. Redpanda gives the same Kafka API with no Zookeeper, single-binary deployment, and faster startup — the right trade-off for a local simulation environment.
@@ -161,6 +169,12 @@ Kafka acts as a fault-tolerant buffer between producer and processing engine. Pr
 # ⚡ Phase 3 — Spark Structured Streaming
 
 Reads the live Kafka stream, parses raw JSON bytes into a typed schema, and processes transactions in real-time micro-batches.
+
+### Spark Streaming Internal Architecture
+
+![Spark Architecture](./assets/spark_architecture.png)
+
+The diagram above shows how Spark consumes from Redpanda partitions in real time — each partition is consumed in parallel, micro-batch processing applies schema enforcement, streaming query processing, and aggregation, and results are written to the data lake sink.
 
 ### Key Config
 
@@ -285,11 +299,11 @@ python -m streamlit run app.py
 
 ```bash
 # Clone the repo
-git clone https://github.com/yourusername/global-retail-data-platform
-cd global-retail-data-platform
+git clone https://github.com/aravindsanandin/Apple-Scale-Retail-Data-Platform
+cd Apple-Scale-Retail-Data-Platform
 
 # Install dependencies
-pip install pyspark==3.5.3 kafka-python duckdb pandas streamlit plotly
+pip install -r requirements.txt
 ```
 
 ### Run the Full Pipeline
@@ -352,5 +366,5 @@ Built as a production-grade data engineering project to demonstrate real-time re
 ---
 
 > 🎬 **Demo video:** [Watch here](https://youtu.be/WfVg-zzc0X0)
-
-> ⭐ If you found this useful, leave a star on the repo!
+>
+> ⭐ If you found this useful, please star the repo — it helps others discover it!
