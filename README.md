@@ -351,6 +351,6 @@ Built as a production-grade data engineering project to demonstrate real-time re
 
 ---
 
-> 🎬 **Demo video:** [Link coming soon]
->
+> 🎬 **Demo video:** [Watch here](https://youtu.be/WfVg-zzc0X0)
+
 > ⭐ If you found this useful, leave a star on the repo!
